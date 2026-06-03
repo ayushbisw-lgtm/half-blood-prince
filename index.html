@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayush Biswas | Student Developer & Creative Tech Portfolio</title>
+  <meta name="description" content="Portfolio of Ayush Biswas — Student Developer, UI/UX Designer, Hackathon Organizer, and Creative Tech Enthusiast. Explore projects, skills, and achievements." />
+  <meta name="keywords" content="Ayush Biswas, portfolio, student developer, UI/UX designer, hackathon, creative tech" />
+  <meta name="author" content="Ayush Biswas" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons CDN (free) -->
+  <link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- PARTICLE CANVAS (background for all screens) -->
+  <!-- ============================================ -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ============================================ -->
+  <!-- 1. LOADING SCREEN                            -->
+  <!-- ============================================ -->
+  <section id="loadingScreen" class="screen active">
+    <div class="loader-content">
+      <div class="loader-ring">
+        <div class="ring-segment"></div>
+        <div class="ring-segment"></div>
+        <div class="ring-segment"></div>
+      </div>
+      <h1 class="loader-title">
+        <span class="glow-letter" style="--i:0">❤️</span>
+        <span class="glow-letter" style="--i:0">A</span>
+        <span class="glow-letter" style="--i:1">Y</span>
+        <span class="glow-letter" style="--i:2">U</span>
+        <span class="glow-letter" style="--i:3">S</span>
+        <span class="glow-letter" style="--i:4">H</span>
+        <span class="glow-letter space" style="--i:5"> </span>
+        <span class="glow-letter" style="--i:6">B</span>
+        <span class="glow-letter" style="--i:7">I</span>
+        <span class="glow-letter" style="--i:8">S</span>
+        <span class="glow-letter" style="--i:9">W</span>
+        <span class="glow-letter" style="--i:10">A</span>
+        <span class="glow-letter" style="--i:11">S</span>
+        <span class="glow-letter" style="--i:0">❤️</span>
+      </h1>
+      <p class="loader-sub">Portfolio</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-text" id="progressText">Loading... 0%</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- 2. VISITOR NAME ENTRY SCREEN                 -->
+  <!-- ============================================ -->
+  <section id="nameScreen" class="screen">
+    <div class="name-entry-card glass-card">
+      <div class="card-glow"></div>
+      <div class="entry-icon">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="url(#iconGrad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00f0ff" /><stop offset="100%" style="stop-color:#b44aff" /></linearGradient></defs>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+        </svg>
+      </div>
+      <h2 class="entry-title">Welcome, Explorer</h2>
+      <p class="entry-subtitle">Enter your name to explore Ayush's portfolio</p>
+      <div class="input-wrapper">
+        <input type="text" id="visitorNameInput" placeholder="Your Name" maxlength="30" autocomplete="off" />
+        <div class="input-border-glow"></div>
+      </div>
+      <button id="enterPortfolioBtn" class="btn-primary btn-glow">
+        <span>Enter Portfolio</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- MAIN PORTFOLIO (hidden until name is entered) -->
+  <!-- ============================================ -->
+  <main id="mainPortfolio" class="screen">
+
+    <!-- NAVIGATION -->
+    <nav id="mainNav" class="glass-nav">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-text">💕AB💕</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- 3. HERO SECTION                              -->
+    <!-- ============================================ -->
+    <section id="hero" class="section hero-section">
+      <div class="hero-grid">
+        <!-- LEFT: Avatar / Workspace Scene -->
+        <div class="hero-scene">
+          <div class="workspace-3d">
+            <!-- Desk -->
+            <div class="desk">
+              <div class="desk-surface"></div>
+              <div class="desk-front"></div>
+              <div class="desk-leg desk-leg-l"></div>
+              <div class="desk-leg desk-leg-r"></div>
+            </div>
+            <!-- Laptop (ASUS ROG STRIX) -->
+            <div class="laptop">
+              <div class="laptop-screen">
+                <div class="screen-content">
+                  <div class="code-line" style="--w:70%"></div>
+                  <div class="code-line accent" style="--w:50%"></div>
+                  <div class="code-line" style="--w:85%"></div>
+                  <div class="code-line accent" style="--w:40%"></div>
+                  <div class="code-line" style="--w:60%"></div>
+                  <div class="code-line" style="--w:75%"></div>
+                  <div class="code-line accent" style="--w:55%"></div>
+                  <div class="code-line" style="--w:45%"></div>
+                </div>
+                <div class="rog-logo">ROG STRIX</div>
+              </div>
+              <div class="laptop-base">
+                <div class="laptop-keyboard">
+                  <div class="key-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="key-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="key-row"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="key-row spacebar"><span class="space-key"></span></div>
+                </div>
+                <div class="laptop-touchpad"></div>
+              </div>
+            </div>
+            <!-- Avatar / Bot -->
+            <div class="avatar-bot">
+              <div class="bot-head">
+                <div class="bot-visor">
+                  <div class="bot-eye left"></div>
+                  <div class="bot-eye right"></div>
+                </div>
+                <div class="bot-antenna"></div>
+              </div>
+              <div class="bot-body">
+                <div class="bot-chest">
+                  <div class="chest-core"></div>
+                </div>
+                <div class="bot-arm left-arm"></div>
+                <div class="bot-arm right-arm"></div>
+                <div class="bot-legs">
+                  <div class="bot-leg left-leg"></div>
+                  <div class="bot-leg right-leg"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Chair -->
+            <div class="chair">
+              <div class="chair-back"></div>
+              <div class="chair-seat"></div>
+              <div class="chair-stem"></div>
+              <div class="chair-base">
+                <div class="chair-wheel"></div>
+                <div class="chair-wheel"></div>
+                <div class="chair-wheel"></div>
+              </div>
+            </div>
+            <!-- Ambient glow -->
+            <div class="ambient-glow"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Hero Text -->
+        <div class="hero-text">
+          <p class="greeting-text" id="greetingText"></p>
+          <h1 class="hero-name">Ayush <span class="highlight">Biswas</span></h1>
+          <p class="hero-title">Developer &nbsp;|&nbsp; UI/UX Designer &nbsp;|&nbsp; Creative Tech Enthusiast</p>
+          <p class="hero-bio" id="heroBio"></p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn-primary btn-glow">
+              <span>View Projects</span>
+            </a>
+            <a href="#contact" class="btn-secondary">
+              <span>Contact Me</span>
+            </a>
+            <!-- ============================================
+                 EDIT: Replace '#' with your actual resume link
+                 ============================================ -->
+            <a href="coming-soon.html" class="btn-outline" id="resumeBtn" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Resume</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <p>Scroll Down</p>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 4. ABOUT ME SECTION                          -->
+    <!-- ============================================ -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">Get to Know Me</p>
+          <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        </div>
+        <div class="about-content">
+          <div class="about-text glass-card">
+            <p>I am <strong>Ayush Biswas</strong>, a tech and creative person involved in hackathons, UI/UX design, website design, event branding, and creative digital projects. I love building modern digital experiences that combine creativity, design, and technology.</p>
+            <p>From organizing hackathons to designing event branding and building sleek web interfaces, I thrive at the intersection of creativity and code. My goal is to create digital experiences that leave a lasting impression.</p>
+          </div>
+          <div class="about-cards">
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">💡</div>
+              <h3>Creative Thinker</h3>
+              <p>Turning ideas into impactful digital experiences</p>
+            </div>
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">⚡</div>
+              <h3>Tech Enthusiast</h3>
+              <p>Always exploring emerging technologies</p>
+            </div>
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">🎨</div>
+              <h3>UI/UX Designer</h3>
+              <p>Crafting user-centered, beautiful interfaces</p>
+            </div>
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">🧩</div>
+              <h3>Problem Solver</h3>
+              <p>Breaking down complex challenges logically</p>
+            </div>
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">🚀</div>
+              <h3>Hackathon Organizer</h3>
+              <p>Building communities through tech events</p>
+            </div>
+            <div class="trait-card glass-card" data-tilt>
+              <div class="trait-icon">🤝</div>
+              <h3>Team Player</h3>
+              <p>Collaborating to achieve shared goals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 5. SKILLS SECTION                            -->
+    <!-- ============================================ -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">What I Work With</p>
+          <h2 class="section-title">My <span class="highlight">Skills</span></h2>
+        </div>
+        <!-- ============================================
+             EDIT: Add or remove skills below
+             ============================================ -->
+        <div class="skills-cloud">
+          <div class="skill-tag" style="--delay:0"><span class="skill-dot"></span>HTML</div>
+          <div class="skill-tag" style="--delay:1"><span class="skill-dot"></span>CSS</div>
+          <div class="skill-tag" style="--delay:2"><span class="skill-dot"></span>JavaScript</div>
+          <div class="skill-tag" style="--delay:3"><span class="skill-dot"></span>UI/UX Design</div>
+          <div class="skill-tag" style="--delay:4"><span class="skill-dot"></span>Website Design</div>
+          <div class="skill-tag" style="--delay:5"><span class="skill-dot"></span>Event Branding</div>
+          <div class="skill-tag" style="--delay:6"><span class="skill-dot"></span>Hackathon Management</div>
+          <div class="skill-tag" style="--delay:7"><span class="skill-dot"></span>Creative Design</div>
+          <div class="skill-tag" style="--delay:8"><span class="skill-dot"></span>GitHub</div>
+          <div class="skill-tag" style="--delay:9"><span class="skill-dot"></span>Vercel</div>
+          <div class="skill-tag" style="--delay:10"><span class="skill-dot"></span>Poster Design</div>
+          <div class="skill-tag" style="--delay:11"><span class="skill-dot"></span>Digital Branding</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 6. PROJECTS SECTION                          -->
+    <!-- ============================================ -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">My Work</p>
+          <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        </div>
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="website">Website</button>
+          <button class="filter-btn" data-filter="uiux">UI/UX</button>
+          <button class="filter-btn" data-filter="hackathon">Hackathon</button>
+          <button class="filter-btn" data-filter="branding">Branding</button>
+          <button class="filter-btn" data-filter="creative">Creative</button>
+          <button class="filter-btn" data-filter="game">Game</button>
+        </div>
+
+        <!-- ============================================
+             EDIT: Add/modify projects here.
+             data-category must match filter values.
+             Replace # with actual GitHub/demo links.
+             ============================================ -->
+        <div class="projects-grid" id="projectsGrid">
+
+          <div class="project-card glass-card" data-category="hackathon" data-tilt>
+            <div class="project-image">
+             <img src="image\ai vp.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/ai-virtual-painting-Html-css-js" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://ai-virtual-painting.netlify.app/" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>AI Virtual Painting </h3>
+              <p>An immersive, animated event landing page with modern design principles and dynamic interactions.</p>
+              <div class="tech-stack">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="project-card glass-card" data-category="game" data-tilt>
+            <div class="project-image">
+              <img src="image\image 2.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/tic-tac-toe" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://tik-tak-tos.netlify.app/" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>tik tak teo</h3>
+              <p>Complete visual identity and branding package for multi-city hackathon events.</p>
+              <div class="tech-stack">
+                <span>Html</span><span>JavaScript</span><span>CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card glass-card" data-category="game" data-tilt>
+            <div class="project-image">
+              <img src="image\image.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/rock-paper-scissors" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://rockpaperscissors9.netlify.app/" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Rock Paper Scissors</h3>
+              <p>A sleek, conversion-focused landing page designed with user experience at its core.</p>
+              <div class="tech-stack">
+                <span>JavaScript</span><span>HTML</span><span>CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card glass-card" data-category="game" data-tilt>
+            <div class="project-image">
+               <img src="image\image 3.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/snake-game-" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://app.netlify.com/projects/snake-game-hbp/overview" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>snake game</h3>
+              <p>Eye-catching poster designs for tech events, workshops, and hackathons.</p>
+              <div class="tech-stack">
+                <span>Design</span><span>Creative</span><span>Print</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card glass-card" data-category="website" data-tilt>
+            <div class="project-image">
+              <img src="image\hotel.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/hotel-mannagement" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://hotel-mannagement.netlify.app/index.html" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Hotel Mannagement</h3>
+              <p>A full functional Hotel Mannagement system user name (Ayush) pwd(123) .</p>
+              <div class="tech-stack">
+                <span>HTML</span><span>CSS</span><span>JS</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card glass-card" data-category="website" data-tilt>
+            <div class="project-image">
+              <img src="image\hospital.png" alt="Rock Paper Scissors" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/ayushbisw-lgtm/hospital-management-" class="proj-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="coming-soon.html" class="proj-link live" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>Hospital Mannagement</h3>
+              <p>A full functional Hospital Mannagement system (#not compleated yet still in process).</p>
+              <div class="tech-stack">
+                <span>JavaScript</span><span>Canvas</span><span>CSS</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- 7. ACHIEVEMENTS SECTION                      -->
+    <!-- ============================================ -->
+    <section id="achievements" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">Milestones</p>
+          <h2 class="section-title">My <span class="highlight">Achievements</span></h2>
+        </div>
+        <!-- ============================================
+             EDIT: Add or modify achievements below
+             ============================================ -->
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-date">2025</span>
+              <h3>The-Drop-Organization Cyber Security certificate</h3>
+              <p>Complated My first Cyber Security course as a WebApplication Penetration Tester .</p>
+            </div>
+          </div>
+
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-date">2025</span>
+              <h3>Deloitte Cyber Security certificate</h3>
+              <p>Complated My Second Cyber Security course as a WebApplication Penetration Tester.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-date">2025</span>
+              <h3>(AIG)Forage Cyber Security certificate</h3>
+              <p>Complated My Third Cyber Security course as a WebApplication Penetration Tester.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-date">2026</span>
+              <h3>SIH Hackathon</h3>
+              <p>Participated in Smart India Hackathons for innovative solutions combining design and technology.</p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-date">2026</span>
+              <h3>game development competition </h3>
+              <p>Contributed to game design and development projects, building interactive web-based experiences.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- 8. CONTACT SECTION                           -->
+    <!-- ============================================ -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-tag">Get In Touch</p>
+          <h2 class="section-title">Contact <span class="highlight">Me</span></h2>
+        </div>
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <form class="contact-form glass-card" id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Your Email</label>
+              <input type="email" id="contactEmail" placeholder="Enter your email" required />
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Your Message</label>
+              <textarea id="contactMessage" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-glow">
+              <span>Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+          <!-- Contact Cards -->
+          <div class="contact-cards">
+            <!-- ============================================
+                 EDIT: Update your social links below
+                 ============================================ -->
+            <a href="mailto:ayushbisw@gmail.com" class="contact-card glass-card" target="_blank" rel="noopener noreferrer">
+              <div class="contact-card-icon" style="--accent:#ff6b6b">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>ayushbisw@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/ayush-biswas-533b28373/" class="contact-card glass-card" target="_blank" rel="noopener noreferrer">
+              <div class="contact-card-icon" style="--accent:#0077b5">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <div>
+                <h4>LinkedIn</h4>
+                <p>Ayush Biswas</p>
+              </div>
+            </a>
+            <a href="https://github.com/ayushbisw-lgtm" class="contact-card glass-card" target="_blank" rel="noopener noreferrer">
+              <div class="contact-card-icon" style="--accent:#b44aff">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              </div>
+              <div>
+                <h4>GitHub</h4>
+                <p>ayushbisw-lgtm</p>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/_mr_a_y_u_s_h_/" class="contact-card glass-card" target="_blank" rel="noopener noreferrer">
+              <div class="contact-card-icon" style="--accent:#e4405f">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div>
+                <h4>Instagram</h4>
+                <p>_mr_a_y_u_s_h_</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============================================ -->
+    <!-- 9. FOOTER                                    -->
+    <!-- ============================================ -->
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="footer-glow"></div>
+        <p>&copy; 2026 Ayush Biswas. Designed and developed with creativity, code, and innovation.</p>
+      </div>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
